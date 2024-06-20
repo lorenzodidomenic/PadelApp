@@ -25,6 +25,7 @@ public class UserFragment extends Fragment {
   FirebaseAuth auth;   //istanza del mio database di autenticazione
   TextView nametextView,surnameTextView,emailTextView,telephoneTextView;
 
+
   String name_user,surname_user,email_user,telephone_user;
 
     public UserFragment() {
