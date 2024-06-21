@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,14 +25,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 
 public class Field1Fragment extends Fragment {
 
     DatabaseReference database;
+    FragmentManager fragmentManager;
     private String stringDateSelected;
     private Spinner possibleHours, possibleTypes;
     private TextInputEditText player1, player2 , player3, player4;
 
+
+    ArrayList<String> items;
     private String field;   //identificativo passato dalla'avtivty main che mi servirà per prendermi il nodo del campo
 
     public Field1Fragment() {
@@ -46,8 +54,7 @@ public class Field1Fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
+        fragmentManager = getParentFragmentManager();
         Bundle data = this.getArguments();
         if(data != null){
 
@@ -66,6 +73,12 @@ public class Field1Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_field1, container, false);
         CalendarView calendarView = (CalendarView) view.findViewById(R.id.calendarView);
         Button button = (Button)view.findViewById(R.id.saveEventBtn);
+
+        DatabaseReference database = FirebaseDatabase.getInstance("https://padel-5d8f6-default-rtdb.europe-west1.firebasedatabase.app").getReference("reservations/"+field);
+
+        //io adesso faccio una query sugli items che non esistono pee quel giorno e creo una lista di items
+
+        /*
         player1 = (TextInputEditText) view.findViewById(R.id.player1) ;
         player2 = (TextInputEditText) view.findViewById(R.id.player2) ;
         player3 = (TextInputEditText) view.findViewById(R.id.player3) ;
@@ -85,16 +98,56 @@ public class Field1Fragment extends Fragment {
         String[] items2 = new String[]{"Prenotazione","Semi-Prenotazione"};
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, items2);
         possibleTypes.setAdapter(adapter2);
-
+*/
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                                                 @Override
+                                                 public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                                                     String[] aux_items = new String[]{"09 10", "10 11", "11 12", "12 13", "13 14", "14 15", "15 16", "16 17", "17 18", "18 19", "19 20", "20 21", "21 22", "22 23", "23 24"};
+                                                     stringDateSelected = Integer.toString(dayOfMonth) + ":" + Integer.toString(month + 1) + ":" + Integer.toString(year)+":";
 
-                stringDateSelected =  Integer.toString(dayOfMonth)+":"+Integer.toString(month+1) +":"+ Integer.toString(year) ;
+                                                     items = new ArrayList<String>(); //simensione massima
+                                                     int length = 15;
+                                                     String prenotazione = stringDateSelected;
 
-            }
-        });
+                                                     String[] date_information = stringDateSelected.split(":");
+                                                     //-1900 perchè ritorna a partire dal 1900
+                                                     Date date_selected = new Date(Integer.parseInt(date_information[2])-1900,Integer.parseInt(date_information[1])-1,Integer.parseInt(date_information[0]));
+                                                     System.out.println(date_selected);
+                                                     System.out.println(new Date());
 
+                                                     if(stringDateSelected == null){
+                                                         Toast.makeText(getContext(), "Seleziona una data", Toast.LENGTH_LONG ).show();
+                                                     }
+                                                     else if(date_selected.before(new Date())){
+
+                                                         Toast.makeText(getContext(), "Data selezionata errata", Toast.LENGTH_LONG ).show();
+                                                     }
+                                                     else{
+                                                     database.addListenerForSingleValueEvent(new ValueEventListener() {
+
+
+                                                         @Override
+                                                         public void onDataChange(DataSnapshot snapshot) {
+
+                                                             //faccio qiery al database per vedere orari disponibili per quel giorno
+                                                             for (int i = 0; i < length; i++) {
+                                                                 if (snapshot.hasChild(prenotazione + "/" + aux_items[i])) {
+                                                                     //nothing
+                                                                 } else {
+                                                                     //System.out.println("Impossbile prenotare");
+                                                                     items.add(aux_items[i]);
+                                                                 }
+                                                             }
+                                                         }
+
+                                                         @Override
+                                                         public void onCancelled(@NonNull DatabaseError error) {
+
+                                                         }
+                                                      });};
+                                                 }
+                                             });
+/*
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,7 +205,37 @@ public class Field1Fragment extends Fragment {
 
             }
         });
+*/
 
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*
+                Field1Fragment fragment = new Field1Fragment();
+                Bundle data = new Bundle();
+                String field1 = "field1";
+                data.putString("field",field1);
+
+                fragment.setArguments(data);
+            */
+
+                Bundle data = new Bundle();
+                data.putStringArrayList("items",items);
+                data.putString("stringDateSelected",stringDateSelected);
+                data.putString("field",field);
+
+
+                ReservationFragment fragment = new ReservationFragment();
+                fragment.setArguments(data);
+
+                fragmentManager.beginTransaction().replace(R.id.fragmentContainerView, fragment, null)   //vogliamo indicare di spaostarci da questo fragment ad un altro, cambia quello che è in questo containetr con un nuovo fragment
+                        .setReorderingAllowed(true)  //reordering allowed
+                        .addToBackStack("name") // così che se faccio indietro ritorna a questo fragment
+                        .commit();
+            }
+
+        });
         return view;
     }
 
