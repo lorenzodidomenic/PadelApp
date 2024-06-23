@@ -139,7 +139,8 @@ public class Register extends AppCompatActivity {
 
                                     FirebaseUser user = auth.getCurrentUser();
                                     String uid = String.valueOf(user.getUid());
-                                    User new_user = new User(name,surname,telephone,email);
+
+                                    User new_user = new User(name,surname,telephone,email,0f,0f,0);
 
                                     //String uid = name+" "+surname;
                                     DatabaseReference database = FirebaseDatabase.getInstance("https://padel-5d8f6-default-rtdb.europe-west1.firebasedatabase.app").getReference("users");

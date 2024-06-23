@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     String email;
     String telephone;
 
+    Float skill,softskill;
+
     ImageButton buttonMain,buttonList,buttonCoach, buttonUser ;
     FragmentManager fragmentManager;
     @Override
@@ -70,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
                     surname = user_r.getSurname();
                     telephone = user_r.getTelephone();
                     email = user_r.getEmail();
+                    skill = user_r.getSkillValue();
+                    softskill = user_r.getSoftSkillValue();
                 }
 
                 @Override
@@ -129,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
                 data.putString("surname_user",surname);
                 data.putString("telephone_user",telephone);
                 data.putString("email_user",email);
+                data.putFloat("skill",skill);
+                data.putFloat("softskill",softskill);
 
 
                 UserFragment fragment = new UserFragment();

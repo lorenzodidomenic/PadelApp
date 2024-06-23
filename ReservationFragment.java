@@ -62,7 +62,7 @@ public class ReservationFragment extends Fragment {
             items = data.getStringArrayList("items");
             stringDateSelected = data.getString("stringDateSelected");
             field = data.getString("field");
-            System.out.println(items.size());
+
         }else{
             System.out.println("data null");
         }
@@ -151,7 +151,7 @@ public class ReservationFragment extends Fragment {
                             Toast.makeText(getContext(), "Semi-Prenotazione non possibile con 4 giocatori", Toast.LENGTH_LONG).show();
                         }
                         else if((types.compareTo("Semi-Prenotazione")==0)&&(!snapshot.hasChild(prenotazione+ "/" + hours+"yellow-flag"))){
-                            Reservation reservation = new Reservation(types, player1name, player2name, player3name, player4name);
+                            Reservation reservation = new Reservation(types, player1name, player2name, player3name, player4name,0,0,0,0,0,0,0,0,0);
                             database.child(prenotazione).child(hours+" yellow-flag").setValue(reservation);
 
                             Toast.makeText(getContext(), "Semi-Prenotazione effettuata", Toast.LENGTH_LONG).show();
@@ -164,7 +164,8 @@ public class ReservationFragment extends Fragment {
                                     .commit();
                         }
                         else{
-                            Reservation reservation = new Reservation(types, player1name, player2name, player3name, player4name);
+
+                            Reservation reservation = new Reservation(types, player1name, player2name, player3name, player4name, 0,0,0,0,0,0,0,0,0);
                             database.child(prenotazione).child(hours).setValue(reservation);
 
                             Toast.makeText(getContext(), "Prenotazione effettuata", Toast.LENGTH_LONG).show();

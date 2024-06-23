@@ -23,10 +23,12 @@ import com.google.firebase.database.ValueEventListener;
 public class UserFragment extends Fragment {
 
   FirebaseAuth auth;   //istanza del mio database di autenticazione
-  TextView nametextView,surnameTextView,emailTextView,telephoneTextView;
+  TextView nametextView,surnameTextView,emailTextView,telephoneTextView,skillTextView,softSkillTextView;
 
 
   String name_user,surname_user,email_user,telephone_user;
+
+  Float skill,softskill;
 
     public UserFragment() {
         // Required empty public constructor
@@ -68,6 +70,7 @@ public class UserFragment extends Fragment {
             surnameTextView.setText(user_r.getSurname());
             emailTextView.setText(user_r.getEmail());
             telephoneTextView.setText(user_r.getTelephone());
+
         }
 
 
@@ -83,6 +86,8 @@ public class UserFragment extends Fragment {
         surnameTextView = view.findViewById(R.id.surname_user);
         emailTextView = view.findViewById(R.id.email_user);
         telephoneTextView = view.findViewById(R.id.telephone_user);
+        skillTextView = view.findViewById(R.id.skill);
+        softSkillTextView =view.findViewById(R.id.softskill);
 
         Bundle data = getArguments();
         if(data != null){
@@ -90,11 +95,15 @@ public class UserFragment extends Fragment {
             surname_user = data.getString("surname_user");
             telephone_user = data.getString("telephone_user");
             email_user = data.getString("email_user");
+            skill = data.getFloat("skill");
+            softskill = data.getFloat("softskill");
 
             nametextView.setText(name_user);
             surnameTextView.setText(surname_user);
             emailTextView.setText(email_user);
             telephoneTextView.setText(telephone_user);
+            skillTextView.setText(String.valueOf(skill));
+            softSkillTextView.setText(String.valueOf(softskill));
         }
 
         return view;
