@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MatchRating">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+      android:orientation="vertical"
+       android:paddingBottom="25px">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:gravity="center"
+       android:paddingTop="50px"
+       >
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Ora" />
+
+      <Spinner
+          android:id="@+id/spinnerHours"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:spinnerMode="dropdown"
+
+          android:gravity="center">
+      </Spinner>
+
+      <Button
+          android:id="@+id/searchBtn"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:backgroundTint="#FFFFFF"
+          android:text="cerca"
+          android:textColor="#1C1A1A"></Button>
+   </LinearLayout>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:padding="25dp">
+
+      <TextView
+          android:id="@+id/player1"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Giocatore1"
+          android:textSize="17dp"
+          android:textStyle="bold"
+          android:layout_marginLeft="10dp"></TextView>
+
+      <TextView
+          android:id="@+id/name_user"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text=""
+          android:layout_marginLeft="20dp"
+          android:textStyle="bold"
+          android:textSize="17dp">
+      </TextView>
+
+      <Spinner
+          android:id="@+id/spinnerGiocatore1"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:spinnerMode="dropdown"
+
+          android:gravity="center">
+      </Spinner>
+
+      <Spinner
+          android:id="@+id/spinner2Giocatore1"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:spinnerMode="dropdown"
+
+          android:gravity="center">
+      </Spinner>
+   </LinearLayout>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:padding="25dp">
+
+      <TextView
+          android:id="@+id/player2"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Giocatore2"
+          android:textSize="17dp"
+          android:textStyle="bold"
+          android:layout_marginLeft="10dp"></TextView>
+
+      <TextView
+          android:id="@+id/surname_user"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text=""
+          android:layout_marginLeft="20dp"
+          android:textStyle="bold"
+          android:textSize="17dp">
+      </TextView>
+
+      <Spinner
+          android:id="@+id/spinnerGiocatore2"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:spinnerMode="dropdown"
+
+          android:gravity="center">
+      </Spinner>
+
+      <Spinner
+          android:id="@+id/spinner2Giocatore2"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:spinnerMode="dropdown"
+
+          android:gravity="center">
+      </Spinner>
+   </LinearLayout>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:padding="25dp">
+
+      <TextView
+          android:id="@+id/player3"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Giocatore3"
+          android:textSize="17dp"
+          android:textStyle="bold"
+          android:layout_marginLeft="10dp"></TextView>
+
+
+      <Spinner
+          android:id="@+id/spinnerGiocatore3"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:spinnerMode="dropdown"
+
+          android:gravity="center">
+      </Spinner>
+
+      <Spinner
+          android:id="@+id/spinner2Giocatore3"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:spinnerMode="dropdown"
+
+          android:gravity="center">
+      </Spinner>
+   </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:padding="25dp">
+
+         <TextView
+             android:id="@+id/player4"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Giocatore4"
+             android:textSize="17dp"
+             android:textStyle="bold"
+             android:layout_marginLeft="10dp"></TextView>
+
+
+         <Spinner
+             android:id="@+id/spinnerGiocatore4"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:spinnerMode="dropdown"
+
+             android:gravity="center">
+         </Spinner>
+
+         <Spinner
+             android:id="@+id/spinner2Giocatore4"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:spinnerMode="dropdown"
+
+             android:gravity="center">
+         </Spinner>
+      </LinearLayout>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:gravity="center"
+       android:padding="25dp">
+
+      <Button
+          android:id="@+id/saveBtb"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Salva">
+
+      </Button>
+   </LinearLayout>
+   </LinearLayout>
+</FrameLayout>
