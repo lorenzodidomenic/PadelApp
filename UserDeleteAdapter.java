@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class UserDeleteAdapter extends RecyclerView.Adapter<UserDeleteAdapter.MyViewHolder> {
 
     Context context;
     ArrayList<User> listItems ;
 
-    public MyAdapter(ArrayList<User> listItems,Context context) {
+    public UserDeleteAdapter(ArrayList<User> listItems,Context context) {
         this.listItems = listItems;
         this.context = context;
     }
@@ -26,7 +26,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.user,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.userdelete,parent,false);
         return new MyViewHolder(v);
     }
 
@@ -36,10 +36,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         User user = listItems.get(position);
         holder.name.setText(user.getName());
         holder.surname.setText(user.getSurname());
-        holder.email.setText(user.getEmail());
-        holder.telephone.setText(user.getTelephone());
-        holder.rank.setText(String.valueOf(user.getSkillValue()));
-        holder.soft_rank.setText(String.valueOf(user.getSoftSkillValue()));
     }
 
     @Override
@@ -49,7 +45,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView name,surname,email,telephone,rank,soft_rank;
+        TextView name,surname,email,telephone;
         public MyViewHolder(@NonNull View ItemView){
             super(ItemView);
 
@@ -57,9 +53,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             surname = ItemView.findViewById(R.id.surname_text);
             email = ItemView.findViewById(R.id.email_text);
             telephone = ItemView.findViewById(R.id.telephone_text);
-            rank = ItemView.findViewById(R.id.rank);
-            soft_rank = ItemView.findViewById(R.id.soft_rank);
-
         }
     }
 }

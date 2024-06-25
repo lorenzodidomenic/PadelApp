@@ -78,29 +78,6 @@ public class Field1Fragment extends Fragment {
 
         DatabaseReference database = FirebaseDatabase.getInstance("https://padel-5d8f6-default-rtdb.europe-west1.firebasedatabase.app").getReference("reservations/"+field);
 
-        //io adesso faccio una query sugli items che non esistono pee quel giorno e creo una lista di items
-
-        /*
-        player1 = (TextInputEditText) view.findViewById(R.id.player1) ;
-        player2 = (TextInputEditText) view.findViewById(R.id.player2) ;
-        player3 = (TextInputEditText) view.findViewById(R.id.player3) ;
-        player4 = (TextInputEditText) view.findViewById(R.id.player4) ;
-
-        //dovrei fare qui una query su quel campo per quel girono e vedere quali orari sono già occupati e levarli dalla lista
-        //mi potrei fare questa cosa e passare i dati in un nuovo frammento dobe ho items con gli orari disponibili
-        //e faccio la stessa cosa che faccio qui
-
-        possibleHours = (Spinner)view.findViewById(R.id.spinnerHours);
-        String[] items = new String[]{"09 10","10 11","11 12","12 13","13 14","14 15","15 16","16 17","17 18","18 19","19 20","20 21","21 22","22 23","23 24"};
-     
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, items);
-        possibleHours.setAdapter(adapter);
-
-        possibleTypes = (Spinner)view.findViewById(R.id.spinnerType);
-        String[] items2 = new String[]{"Prenotazione","Semi-Prenotazione"};
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, items2);
-        possibleTypes.setAdapter(adapter2);
-*/
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
                                                  @Override
                                                  public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
@@ -111,18 +88,6 @@ public class Field1Fragment extends Fragment {
                                                      items_rating = new ArrayList<String>(); //simensione massima
                                                      int length = 15;
                                                      String prenotazione = stringDateSelected;
-
-
-
-
-                                                     /*
-                                                     if(stringDateSelected == null){
-                                                         Toast.makeText(getContext(), "Seleziona una data", Toast.LENGTH_LONG ).show();
-                                                     }
-                                                     else if(date_selected.before(new Date())){
-                                                         Toast.makeText(getContext(), "Data selezionata errata", Toast.LENGTH_LONG ).show();
-                                                     }
-                                                     */
 
                                                      if(stringDateSelected != null){
 
@@ -184,82 +149,18 @@ public class Field1Fragment extends Fragment {
                                                      }
                                                  }
                                              });
-/*
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String hours = possibleHours.getSelectedItem().toString();
-                String types = possibleTypes.getSelectedItem().toString();
-
-                String player1name = String.valueOf(player1.getText());
-                String player2name = String.valueOf(player2.getText());
-                String player3name = String.valueOf(player3.getText());
-                String player4name = String.valueOf(player4.getText());
-
-                if(stringDateSelected == null){
-                    Toast.makeText(getContext(), "Seleziona una data", Toast.LENGTH_LONG ).show();
-                }
-
-
-
-
-                DatabaseReference database = FirebaseDatabase.getInstance("https://padel-5d8f6-default-rtdb.europe-west1.firebasedatabase.app").getReference("reservations/"+field);
-
-                String prenotazione = stringDateSelected;
-
-                database.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot snapshot) {
-                        if (snapshot.hasChild(prenotazione+ "/" + hours)) {
-                            //System.out.println("Impossbile prenotare");
-                            Toast.makeText(getContext(), "Campo Occupato", Toast.LENGTH_LONG ).show();
-                        }else {
-
-                            System.out.println(prenotazione);
-                            // run some code
-                            Reservation reservation = new Reservation(types, player1name, player2name, player3name, player4name);
-                            database.child(prenotazione).child(hours).setValue(reservation);
-
-                            Toast.makeText(getContext(), "Prenotazione effettuata", Toast.LENGTH_LONG ).show();
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-               // Reservation reservation = new Reservation(types,player1name,player2name,player3name,player4name);
-
-               // database.child(prenotazione).setValue(reservation);
-
-
-
-
-
-            }
-        });
-*/
-
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                Field1Fragment fragment = new Field1Fragment();
-                Bundle data = new Bundle();
-                String field1 = "field1";
-                data.putString("field",field1);
 
-                fragment.setArguments(data);
-            */
-                String[] date_information = stringDateSelected.split(":");
-                //-1900 perchè ritorna a partire dal 1900
-                Date date_selected = new Date(Integer.parseInt(date_information[2]) - 1900, Integer.parseInt(date_information[1]) - 1, Integer.parseInt(date_information[0]));
+
                 if (stringDateSelected != null) {
+
+                    String[] date_information = stringDateSelected.split(":");
+                    //-1900 perchè ritorna a partire dal 1900
+                    Date date_selected = new Date(Integer.parseInt(date_information[2]) - 1900, Integer.parseInt(date_information[1]) - 1, Integer.parseInt(date_information[0]));
+
                     if (date_selected.before(new Date())) {
                         Toast.makeText(getContext(), "Data selezionata errata", Toast.LENGTH_LONG).show();
                     } else {

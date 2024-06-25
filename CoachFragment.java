@@ -3,62 +3,86 @@ package com.example.padel;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CoachFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+
 public class CoachFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    TextInputEditText editTextName,editTextSpeciality;
+    Button buttonSave;
+    FragmentManager fragmentManager;
+    DatabaseReference database;
 
     public CoachFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CoachFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static CoachFragment newInstance(String param1, String param2) {
         CoachFragment fragment = new CoachFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        fragmentManager = getParentFragmentManager();
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_coach, container, false);
+        View view =  inflater.inflate(R.layout.fragment_coach, container, false);
+
+        editTextName = (TextInputEditText)view.findViewById(R.id.name);
+        editTextSpeciality = (TextInputEditText)view.findViewById(R.id.speciality);
+        buttonSave = (Button) view.findViewById(R.id.btn_save);
+
+        DatabaseReference database = FirebaseDatabase.getInstance("https://padel-5d8f6-default-rtdb.europe-west1.firebasedatabase.app").getReference("coaches");
+
+
+        buttonSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String name = editTextName.getText().toString();
+                String speciality = editTextSpeciality.getText().toString();
+
+                if ((name.isEmpty() || speciality.isEmpty())){
+                    Toast.makeText(getContext(), "Dati Inseriti non corretti",
+                            Toast.LENGTH_SHORT).show();
+                }
+                Coach new_coach = new Coach(name,speciality);
+
+                database.child(name).setValue(new_coach);
+
+                Toast.makeText(getContext(), "Salvataggio Maestro effettuato",
+                        Toast.LENGTH_SHORT).show();
+
+
+                CoachFragment fragment = new CoachFragment();
+
+                fragmentManager.beginTransaction().replace(R.id.fragmentContainerView, fragment, null)   //vogliamo indicare di spaostarci da questo fragment ad un altro, cambia quello che è in questo containetr con un nuovo fragment
+                        .setReorderingAllowed(true)  //reordering allowed
+                        .addToBackStack("name") // così che se faccio indietro ritorna a questo fragment
+                        .commit();
+            }
+        });
+
+        return view;
     }
 }

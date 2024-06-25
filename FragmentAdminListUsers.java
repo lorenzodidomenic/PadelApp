@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,33 +21,24 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class ListFragment extends Fragment {
-
+public class FragmentAdminListUsers extends Fragment {
 
     private RecyclerView recyclerView ;   //la view che mi permette di mostrare tutti gli utenti
 
     ArrayList<User> list = new ArrayList<>();
-    MyAdapter myAdapter =new MyAdapter(list,getContext());
+    UserDeleteAdapter myAdapter =new UserDeleteAdapter(list,getContext());
 
-    public ListFragment() {
+
+    public FragmentAdminListUsers() {
         // Required empty public constructor
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_list, container, false);
-
-        // Add the following lines to create RecyclerView
-        recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(myAdapter);
-
-        return view;
+    public static FragmentAdminListUsers newInstance(String param1, String param2) {
+        FragmentAdminListUsers fragment = new FragmentAdminListUsers();
+        Bundle args = new Bundle();
+        return fragment;
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,7 +71,25 @@ public class ListFragment extends Fragment {
             }
         });
 
+
+
     }
 
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view =  inflater.inflate(R.layout.fragment_admin_list_users, container, false);
+
+        // Add the following lines to create RecyclerView
+        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        recyclerView.setAdapter(myAdapter);
+
+
+
+        return view;
+    }
 }
