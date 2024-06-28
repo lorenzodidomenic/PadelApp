@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 fragmentManager.beginTransaction()   //indico di iniziare una transazione da un fragment ad un altro
-                        .replace(R.id.fragmentContainerView, CoachFragment.class, null)   //vogliamo indicare di spaostarci da questo fragment ad un altro, cambia quello che è in questo containetr con un nuovo fragment
+                        .replace(R.id.fragmentContainerView, LessonList.class, null)   //vogliamo indicare di spaostarci da questo fragment ad un altro, cambia quello che è in questo containetr con un nuovo fragment
                         .setReorderingAllowed(true)  //reordering allowed
                         .addToBackStack("name") // così che se faccio indietro ritorna a questo fragment
                         .commit();

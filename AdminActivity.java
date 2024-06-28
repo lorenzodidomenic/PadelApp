@@ -3,30 +3,25 @@ package com.example.padel;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class AdminActivity extends AppCompatActivity {
 
-    ImageButton buttonMain, buttonList, buttonCoach;
+    ImageButton buttonMain, buttonList, buttonCoach,buttonBack;
 
+    FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        auth = FirebaseAuth.getInstance();
 
         setContentView(R.layout.activity_admin);
 
@@ -56,7 +51,7 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 fragmentManager.beginTransaction()   //indico di iniziare una transazione da un fragment ad un altro
-                        .replace(R.id.fragmentContainerView, FragmentAdminListUsers.class, null)   //vogliamo indicare di spaostarci da questo fragment ad un altro, cambia quello che è in questo containetr con un nuovo fragment
+                        .replace(R.id.fragmentContainerView, FragmentAdminListCoaches.class, null)   //vogliamo indicare di spaostarci da questo fragment ad un altro, cambia quello che è in questo containetr con un nuovo fragment
                         .setReorderingAllowed(true)  //reordering allowed
                         .addToBackStack("name") // così che se faccio indietro ritorna a questo fragment
                         .commit();
@@ -74,6 +69,20 @@ public class AdminActivity extends AppCompatActivity {
                         .setReorderingAllowed(true)  //reordering allowed
                         .addToBackStack("name") // così che se faccio indietro ritorna a questo fragment
                         .commit();
+            }
+        });
+
+
+        buttonBack = (ImageButton) findViewById(R.id.buttonBack);
+
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                auth.signOut();
+                Intent intent = new Intent(getApplicationContext(), Login.class);
+                startActivity(intent);
             }
         });
 

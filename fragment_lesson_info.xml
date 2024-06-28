@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainfragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CC864E"
+    android:backgroundTint="#CC864E"
+    tools:context=".LessonInfo">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="6dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Info Prenotazione"
+            android:textStyle="bold"
+            android:textSize="17dp">
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="6dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Giorno"
+            android:textStyle="bold"
+            android:textSize="17dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            android:textSize="17dp">
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="6dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ora"
+            android:textStyle="bold"
+            android:textSize="17dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            android:textSize="17dp">
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="6dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Campo"
+            android:textStyle="bold"
+            android:textSize="17dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            android:textSize="17dp">
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="6dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Maestro"
+            android:textStyle="bold"
+            android:textSize="17dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/coach"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            android:textSize="17dp">
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="6dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descrizione"
+            android:textStyle="bold"
+            android:textSize="17dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            android:textSize="17dp">
+        </TextView>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prenota">
+
+            </Button>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>

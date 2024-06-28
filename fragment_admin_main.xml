@@ -5,14 +5,14 @@
     android:id="@+id/adminmainfragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2629EC"
-    android:backgroundTint="#2629EC"
+    android:background="#05897D"
+    android:backgroundTint="#05897D"
     tools:context=".AdminMainFragment">
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#2629CC"
+        android:background="#05897D"
         android:columnCount="2"
         android:rowCount="2">
 
@@ -22,20 +22,20 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="0dp"
-            android:backgroundTint="#2629CC"
+            android:backgroundTint="#05897D"
             card_view:cardElevation="0dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:backgroundTint="#2629CC">
+                android:backgroundTint="#05897D">
 
                 <ImageButton
                     android:id="@+id/field_one"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_centerInParent="true"
-                    android:backgroundTint="#2629CC"
+                    android:backgroundTint="#05897D"
                     android:contentDescription="@string/campo_1"
                     android:src="@drawable/images" />
             </RelativeLayout>
@@ -47,7 +47,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="5dp"
-            android:backgroundTint="#2629CC"
+            android:backgroundTint="#05897D"
             card_view:cardElevation="0dp">
 
             <RelativeLayout
@@ -59,7 +59,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_centerInParent="true"
-                    android:backgroundTint="#2629CC"
+                    android:backgroundTint="#05897D"
                     android:contentDescription="@string/campo_1"
                     android:src="@drawable/images" />
             </RelativeLayout>
@@ -71,7 +71,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="5dp"
-            android:backgroundTint="#2629CC"
+            android:backgroundTint="#05897D"
             card_view:cardElevation="0dp">
 
             <RelativeLayout
@@ -83,7 +83,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_centerInParent="true"
-                    android:backgroundTint="#2629CC"
+                    android:backgroundTint="#05897D"
                     android:contentDescription="@string/campo_1"
                     android:src="@drawable/images" />
             </RelativeLayout>
@@ -95,7 +95,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="5dp"
-            android:backgroundTint="#2629CC"
+            android:backgroundTint="#05897D"
             card_view:cardElevation="0dp">
 
             <RelativeLayout
@@ -107,7 +107,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_centerInParent="true"
-                    android:backgroundTint="#2629CC"
+                    android:backgroundTint="#05897D"
                     android:contentDescription="@string/campo_1"
                     android:src="@drawable/images" />
             </RelativeLayout>

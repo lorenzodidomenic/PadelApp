@@ -95,11 +95,8 @@ public class InsertLessonFragment extends Fragment {
 
                 String description = String.valueOf(textDescriptionView.getText());
 
-                System.out.println(hours);
-                System.out.println(coach);
-                System.out.println(description);
 
-                DatabaseReference database = FirebaseDatabase.getInstance("https://padel-5d8f6-default-rtdb.europe-west1.firebasedatabase.app").getReference("lessons/"+field);
+                DatabaseReference database = FirebaseDatabase.getInstance("https://padel-5d8f6-default-rtdb.europe-west1.firebasedatabase.app").getReference("lessons");
 
                 String prenotazione = stringDateSelected;
 
@@ -107,12 +104,18 @@ public class InsertLessonFragment extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        Lesson lesson = new Lesson(coach,description);
-                        database.child(prenotazione).child(hours).setValue(lesson);
+                        if(database.child("Lezione " + prenotazione + " "+ hours)==null){
+                            Toast.makeText(getContext(), "Orario occupato", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            Lesson lesson = new Lesson(coach, description, stringDateSelected, hours, field,"");
+                            database.child("Lezione " + prenotazione + " " + hours).setValue(lesson);
+                            DatabaseReference database = FirebaseDatabase.getInstance("https://padel-5d8f6-default-rtdb.europe-west1.firebasedatabase.app").getReference("reservations/"+field);
 
-                        Toast.makeText(getContext(), "Inserimento lezione effettuato", Toast.LENGTH_LONG).show();
+                            database.child(stringDateSelected).child(hours).setValue(lesson);
+                            Toast.makeText(getContext(), "Inserimento lezione effettuato", Toast.LENGTH_LONG).show();
 
-
+                        }
                         AdminManage fragment = new AdminManage();
 
                         fragmentManager.beginTransaction().replace(R.id.fragmentContainerView, fragment, null)   //vogliamo indicare di spaostarci da questo fragment ad un altro, cambia quello che è in questo containetr con un nuovo fragment

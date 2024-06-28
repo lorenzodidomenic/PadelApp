@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,54 +20,43 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class ListFragment extends Fragment {
-
+public class FragmentAdminListCoaches extends Fragment {
 
     private RecyclerView recyclerView ;   //la view che mi permette di mostrare tutti gli utenti
 
-    ArrayList<User> list = new ArrayList<>();
-    MyAdapter myAdapter =new MyAdapter(list,getContext());
-    FragmentManager fragmentManager;
+    ArrayList<Coach> list = new ArrayList<>();
+    CoachAdapter myAdapter =new CoachAdapter(list,getContext());
 
-    public ListFragment() {
+
+    public FragmentAdminListCoaches() {
         // Required empty public constructor
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_list, container, false);
-
-        // Add the following lines to create RecyclerView
-        recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(myAdapter);
-
-        return view;
+    public static FragmentAdminListCoaches newInstance(String param1, String param2) {
+        FragmentAdminListCoaches fragment = new FragmentAdminListCoaches();
+        Bundle args = new Bundle();
+        return fragment;
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        DatabaseReference database = FirebaseDatabase.getInstance("https://padel-5d8f6-default-rtdb.europe-west1.firebasedatabase.app").getReference("users");
+        DatabaseReference database = FirebaseDatabase.getInstance("https://padel-5d8f6-default-rtdb.europe-west1.firebasedatabase.app").getReference("coaches");
         //recyclerView = getView().findViewById(R.id.recyclerView);
-fragmentManager = getParentFragmentManager();
+
 
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-
                 //prendiamo tutti i dati dentro users
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
 
-                    User user = dataSnapshot.getValue(User.class);
-                    if(user.getName().compareTo("Administratore") != 0)
-                       list.add(user);
+                    Coach coach = dataSnapshot.getValue(Coach.class);
+                    if(coach.getName().compareTo("Administratore") != 0)
+                       list.add(coach);
 
                 }
                 myAdapter.notifyDataSetChanged();
@@ -82,7 +70,25 @@ fragmentManager = getParentFragmentManager();
             }
         });
 
+
+
     }
 
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view =  inflater.inflate(R.layout.fragment_admin_list_users, container, false);
+
+        // Add the following lines to create RecyclerView
+        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        recyclerView.setAdapter(myAdapter);
+
+
+
+        return view;
+    }
 }

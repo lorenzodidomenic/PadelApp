@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2629CC"
-    android:backgroundTint="#2629CC"
+    android:background="#05897D"
+    android:backgroundTint="#05897D"
     android:orientation="vertical"
     tools:context=".AdminActivity">
 
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
-            android:backgroundTint="#2629CC"
+            android:backgroundTint="#05897D"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             android:title="Welcome">
@@ -55,6 +55,14 @@
                     android:layout_weight="1"
                     android:backgroundTint="#FFFFFF"
                     app:srcCompat="@drawable/coach" />
+
+                <ImageButton
+                    android:id="@+id/buttonBack"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FFFFFF"
+                    app:srcCompat="@drawable/left" />
 
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
