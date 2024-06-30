@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 
 public class ListFragment extends Fragment {
@@ -67,10 +68,11 @@ fragmentManager = getParentFragmentManager();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
 
                     User user = dataSnapshot.getValue(User.class);
-                    if(user.getName().compareTo("Administratore") != 0)
+                    if(user.getName().compareTo("Administrator") != 0)
                        list.add(user);
 
                 }
+                list.sort(Comparator.comparing(a->a.skillValue));
                 myAdapter.notifyDataSetChanged();
             }
 

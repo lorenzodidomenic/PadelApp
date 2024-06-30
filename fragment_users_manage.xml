@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="#CC864E"
     android:backgroundTint="#CC864E"
-    tools:context=".LessonInfo">
+    tools:context=".UsersManage">
 
 
     <LinearLayout
@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Info Prenotazione"
+                android:text="Informazioni utente"
                 android:textSize="17dp"
                 android:textStyle="bold"></TextView>
         </LinearLayout>
@@ -44,18 +44,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Giorno"
+                android:text="Nome"
                 android:textSize="17dp"
                 android:textStyle="bold"></TextView>
 
-            <TextView
-                android:id="@+id/day"
+            <EditText
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text=""
                 android:textSize="17dp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold"></EditText>
 
         </LinearLayout>
 
@@ -69,18 +69,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ora"
+                android:text="Cognome"
                 android:textSize="17dp"
                 android:textStyle="bold"></TextView>
 
-            <TextView
-                android:id="@+id/hour"
+            <EditText
+                android:id="@+id/surname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text=""
                 android:textSize="17dp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold"></EditText>
 
         </LinearLayout>
 
@@ -94,70 +94,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Campo"
+                android:text="Email"
                 android:textSize="17dp"
                 android:textStyle="bold"></TextView>
 
-            <TextView
-                android:id="@+id/field"
+            <EditText
+                android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text=""
                 android:textSize="17dp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold"></EditText>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="6dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Maestro"
-                android:textSize="17dp"
-                android:textStyle="bold"></TextView>
-
-            <TextView
-                android:id="@+id/coach"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text=""
-                android:textSize="17dp"
-                android:textStyle="bold"></TextView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="6dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Descrizione"
-                android:textSize="17dp"
-                android:textStyle="bold"></TextView>
-
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text=""
-                android:textSize="17dp"
-                android:textStyle="bold"></TextView>
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -171,7 +122,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:backgroundTint="#741111"
-                android:text="Prenota">
+                android:text="Elimina utente">
+
+            </Button>
+
+            <Button
+                android:id="@+id/btn_modify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:backgroundTint="#741111"
+                android:text="Modifica utente">
 
             </Button>
 

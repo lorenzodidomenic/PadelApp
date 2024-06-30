@@ -25,7 +25,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -84,6 +86,7 @@ public class Field1Fragment extends Fragment {
                                                      String[] aux_items = new String[]{"09 10", "10 11", "11 12", "12 13", "13 14", "14 15", "15 16", "16 17", "17 18", "18 19", "19 20", "20 21", "21 22", "22 23", "23 24"};
                                                      stringDateSelected = Integer.toString(dayOfMonth) + ":" + Integer.toString(month + 1) + ":" + Integer.toString(year);
 
+                                                     System.out.println(stringDateSelected);
                                                      items_reservations = new ArrayList<String>(); //simensione massima
                                                      items_rating = new ArrayList<String>(); //simensione massima
                                                      int length = 15;
@@ -92,8 +95,9 @@ public class Field1Fragment extends Fragment {
                                                      if(stringDateSelected != null){
 
                                                          String[] date_information = stringDateSelected.split(":");
+
                                                          //-1900 perchè ritorna a partire dal 1900
-                                                         Date date_selected = new Date(Integer.parseInt(date_information[2])-1900,Integer.parseInt(date_information[1])-1,Integer.parseInt(date_information[0]));
+                                                         Date date_selected = new Date(Integer.parseInt(date_information[2])-1900,Integer.parseInt(date_information[1])-1,Integer.parseInt(date_information[0]),23,59);
 
                                                          //se selezionata data futura vedo posti disponibili
                                                          if (date_selected.after(new Date())) {
@@ -104,10 +108,13 @@ public class Field1Fragment extends Fragment {
 
                                                              //faccio qiery al database per vedere orari disponibili per quel giorno
                                                              for (int i = 0; i < length; i++) {
+
+
                                                                  if (snapshot.hasChild(prenotazione + "/" + aux_items[i])) {
                                                                      //nothing
                                                                  } else {
                                                                      //System.out.println("Impossbile prenotare");
+
                                                                      items_reservations.add(aux_items[i]);
                                                                  }
                                                              }
@@ -126,9 +133,7 @@ public class Field1Fragment extends Fragment {
 
                                                                      //faccio qiery al database per vedere orari disponibili per quel giorno
                                                                      for (int i = 0; i < length; i++) {
-                                                                         System.out.println(prenotazione + "/" + aux_items[i]);
                                                                          if (snapshot.hasChild(prenotazione + "/" + aux_items[i])) {
-                                                                             System.out.println("aaa");
                                                                              items_rating.add(aux_items[i]);
                                                                          } else {
                                                                              //System.out.println("Impossbile prenotare");
@@ -159,7 +164,7 @@ public class Field1Fragment extends Fragment {
 
                     String[] date_information = stringDateSelected.split(":");
                     //-1900 perchè ritorna a partire dal 1900
-                    Date date_selected = new Date(Integer.parseInt(date_information[2]) - 1900, Integer.parseInt(date_information[1]) - 1, Integer.parseInt(date_information[0]));
+                    Date date_selected = new Date(Integer.parseInt(date_information[2]) - 1900, Integer.parseInt(date_information[1]) - 1, Integer.parseInt(date_information[0]), 23,59);
 
                     if (date_selected.before(new Date())) {
                         Toast.makeText(getContext(), "Data selezionata errata", Toast.LENGTH_LONG).show();

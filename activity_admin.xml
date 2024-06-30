@@ -35,14 +35,14 @@
 
                 <ImageButton
                     android:id="@+id/buttonFields"
-                    android:layout_width="110dp"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#FFFFFF"
                     app:srcCompat="@drawable/ball" />
 
                 <ImageButton
                     android:id="@+id/buttonList"
-                    android:layout_width="110dp"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:backgroundTint="#FFFFFF"
@@ -50,19 +50,28 @@
 
                 <ImageButton
                     android:id="@+id/buttonCoach"
-                    android:layout_width="110dp"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:backgroundTint="#FFFFFF"
                     app:srcCompat="@drawable/coach" />
 
                 <ImageButton
+                    android:id="@+id/btnList"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@android:drawable/checkbox_on_background" />
+
+                <ImageButton
                     android:id="@+id/buttonBack"
-                    android:layout_width="110dp"
+                    android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:backgroundTint="#FFFFFF"
                     app:srcCompat="@drawable/left" />
+
+
 
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>

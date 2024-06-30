@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class LessonList extends Fragment {
@@ -60,7 +61,17 @@ public class LessonList extends Fragment {
 
                     Lesson lesson = dataSnapshot.getValue(Lesson.class);
 
-                    list.add(lesson);
+                    String date_lesson = lesson.getDay();
+                    String[] date = date_lesson.split(":");
+                    String hour_lesson = lesson.getHour();
+                    String[] hour = hour_lesson.split(" ");
+
+
+                    Date date_les = new Date(Integer.parseInt(date[2])-1900,Integer.parseInt(date[1])-1,Integer.parseInt(date[0]),Integer.parseInt(hour[0]),0);
+
+                    System.out.println(date_les);
+                    if(date_les.after(new Date()))
+                       list.add(lesson);
 
                 }
                 myAdapter.notifyDataSetChanged();

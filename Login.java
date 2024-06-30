@@ -23,6 +23,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
 
@@ -78,12 +83,13 @@ public class Login extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(View.GONE);
+
                                 if (task.isSuccessful()) {
                                     Toast.makeText(Login.this, "Login Saccesfull",
                                             Toast.LENGTH_SHORT).show();
 
                                     Intent intent;
-                                    if((email.compareTo("admin-panel@gmail.com")==0)&&(password.compareTo("palazzolo")==0)){
+                                    if((email.compareTo("administrator@gmail.com")==0)&&(password.compareTo("palazzolo")==0)){
                                          intent = new Intent(getApplicationContext(), AdminActivity.class);
                                     }
                                     else {

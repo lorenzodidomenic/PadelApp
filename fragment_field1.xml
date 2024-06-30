@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/field1fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -31,14 +32,15 @@
                 android:id="@+id/saveEventBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Prenota campo"
-                />
+                android:backgroundTint="#741111"
+                android:text="Prenota campo" />
 
             <Button
                 android:id="@+id/insertRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
+                android:backgroundTint="#741111"
                 android:text="Valuta Partita"
                 android:translationX="10px" />
 

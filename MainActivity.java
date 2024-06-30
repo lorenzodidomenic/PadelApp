@@ -68,12 +68,20 @@ public class MainActivity extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
                     User user_r = dataSnapshot.getValue(User.class);
-                    name = user_r.getName();
-                    surname = user_r.getSurname();
-                    telephone = user_r.getTelephone();
-                    email = user_r.getEmail();
-                    skill = user_r.getSkillValue();
-                    softskill = user_r.getSoftSkillValue();
+
+                    if(user_r==null){
+                        Intent intent = new Intent(getApplicationContext(),Disabilitated.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else {
+                        name = user_r.getName();
+                        surname = user_r.getSurname();
+                        telephone = user_r.getTelephone();
+                        email = user_r.getEmail();
+                        skill = user_r.getSkillValue();
+                        softskill = user_r.getSoftSkillValue();
+                    }
                 }
 
                 @Override

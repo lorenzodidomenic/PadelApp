@@ -57,7 +57,7 @@
         android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#943333"
+        app:backgroundTint="#741111"
         android:text="Inserisci" />
 
 </LinearLayout>

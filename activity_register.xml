@@ -19,7 +19,7 @@
         android:layout_marginBottom="20dp"
         android:gravity="center"
         android:text="@string/register"
-        android:textColor="#314384"
+        android:textColor="#741111"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -75,6 +75,7 @@
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:hint="@string/password" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,7 +89,7 @@
         android:id="@+id/btn_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#943333"
+        android:backgroundTint="#741111"
         android:text="@string/register" />
 
     <TextView

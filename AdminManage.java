@@ -111,7 +111,7 @@ public class AdminManage extends Fragment {
 
                     String[] date_information = stringDateSelected.split(":");
                     //-1900 perchè ritorna a partire dal 1900
-                    Date date_selected = new Date(Integer.parseInt(date_information[2])-1900,Integer.parseInt(date_information[1])-1,Integer.parseInt(date_information[0]));
+                    Date date_selected = new Date(Integer.parseInt(date_information[2])-1900,Integer.parseInt(date_information[1])-1,Integer.parseInt(date_information[0]),23,59);
 
                     //se selezionata data futura vedo posti disponibili
                     if (date_selected.after(new Date())) {
@@ -150,7 +150,7 @@ public class AdminManage extends Fragment {
 
                     String[] date_information = stringDateSelected.split(":");
                     //-1900 perchè ritorna a partire dal 1900
-                    Date date_selected = new Date(Integer.parseInt(date_information[2]) - 1900, Integer.parseInt(date_information[1]) - 1, Integer.parseInt(date_information[0]));
+                    Date date_selected = new Date(Integer.parseInt(date_information[2]) - 1900, Integer.parseInt(date_information[1]) - 1, Integer.parseInt(date_information[0]),23,59);
                     if (date_selected.before(new Date())) {
                         Toast.makeText(getContext(), "Data selezionata errata", Toast.LENGTH_LONG).show();
                     } else {

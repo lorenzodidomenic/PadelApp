@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,21 +21,21 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class FragmentAdminListCoaches extends Fragment {
+public class ListReservations extends Fragment {
 
     private RecyclerView recyclerView ;   //la view che mi permette di mostrare tutti gli utenti
 
-    ArrayList<User> list = new ArrayList<>();
-    UserDeleteAdapter myAdapter =new UserDeleteAdapter(list,getContext());
+    ArrayList<Reservation> list = new ArrayList<>();
+    ReservationAdapter myAdapter =new ReservationAdapter(list,getContext());
 
 
-    public FragmentAdminListCoaches() {
+    public ListReservations() {
         // Required empty public constructor
     }
 
 
-    public static FragmentAdminListCoaches newInstance(String param1, String param2) {
-        FragmentAdminListCoaches fragment = new FragmentAdminListCoaches();
+    public static LessonList newInstance(String param1, String param2) {
+        LessonList fragment = new LessonList();
         Bundle args = new Bundle();
         return fragment;
     }
@@ -43,7 +44,7 @@ public class FragmentAdminListCoaches extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        DatabaseReference database = FirebaseDatabase.getInstance("https://padel-5d8f6-default-rtdb.europe-west1.firebasedatabase.app").getReference("users");
+        DatabaseReference database = FirebaseDatabase.getInstance("https://padel-5d8f6-default-rtdb.europe-west1.firebasedatabase.app").getReference("reservations");
         //recyclerView = getView().findViewById(R.id.recyclerView);
 
 
@@ -51,13 +52,18 @@ public class FragmentAdminListCoaches extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+
+
+                list.clear();
                 //prendiamo tutti i dati dentro users
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-
-                    User user = dataSnapshot.getValue(User.class);
-                    if(user.getName().compareTo("Administrator") != 0)
-                       list.add(user);
-
+                    for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                            for(DataSnapshot dataSnapshot2: dataSnapshot1.getChildren()) {
+                                Reservation reservation = dataSnapshot2.getValue(Reservation.class);
+                                if(reservation.getPlayer1() != null)
+                                    list.add(reservation);
+                            }
+                    }
                 }
                 myAdapter.notifyDataSetChanged();
             }
@@ -79,7 +85,7 @@ public class FragmentAdminListCoaches extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_admin_list_users, container, false);
+        View view =  inflater.inflate(R.layout.fragment_list_reservations, container, false);
 
         // Add the following lines to create RecyclerView
         recyclerView = view.findViewById(R.id.recyclerView);
