@@ -1,2 +1,2 @@
 # PadelApp
-Java classes for Padel Cub App
+Java classes and views for Padel Cub App
